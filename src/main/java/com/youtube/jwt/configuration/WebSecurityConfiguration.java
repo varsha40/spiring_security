@@ -49,37 +49,36 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
 		return new JwtRequestFilter();
 	}
 
-//     @Override
-//     protected void configure(HttpSecurity httpSecurity) throws Exception {
+    @Override
+    protected void configure(HttpSecurity httpSecurity) throws Exception {
 
-//        httpSecurity.cors().and().csrf().disable()
-//                .authorizeRequests().antMatchers("/registerNewUser", "/authenticate").permitAll()
-//                .antMatchers(HttpHeaders.ALLOW).permitAll()
-//                .anyRequest().authenticated()
-//                .and()
-//                .exceptionHandling().authenticationEntryPoint(jwtAuthenticationEntryPoint)
-//                .and()
-//                .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
-//        ;
+       httpSecurity.cors().and().csrf().disable()
+               .authorizeRequests().antMatchers("/registerNewUser", "/authenticate").permitAll()
+               .antMatchers(HttpHeaders.ALLOW).permitAll()
+               .anyRequest().authenticated()
+               .and()
+               .exceptionHandling().authenticationEntryPoint(jwtAuthenticationEntryPoint)
+               .and()
+               .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
        
-//         httpSecurity.addFilterBefore(authenticationJwtRequestFilter(), UsernamePasswordAuthenticationFilter.class);
+        httpSecurity.addFilterBefore(authenticationJwtRequestFilter(), UsernamePasswordAuthenticationFilter.class);
 
     
-//         httpSecurity
-//     .cors().and().csrf().disable()
-//     .authorizeRequests()
-//         .antMatchers("/registerNewUser", "/token/authenticate").permitAll()
-//         .antMatchers(HttpHeaders.ALLOW).permitAll()
-//         .anyRequest().authenticated()
-//         .and()
-//     .exceptionHandling()
-//         .authenticationEntryPoint(jwtAuthenticationEntryPoint)
-//         .and()
-//     .sessionManagement()
-//         .sessionCreationPolicy(SessionCreationPolicy.STATELESS);
+    //     httpSecurity
+    // .cors().and().csrf().disable()
+    // .authorizeRequests()
+    //     .antMatchers("/registerNewUser", "/token/authenticate").permitAll()
+    //     .antMatchers(HttpHeaders.ALLOW).permitAll()
+    //     .anyRequest().authenticated()
+    //     .and()
+    // .exceptionHandling()
+    //     .authenticationEntryPoint(jwtAuthenticationEntryPoint)
+    //     .and()
+    // .sessionManagement()
+    //     .sessionCreationPolicy(SessionCreationPolicy.STATELESS);
 
 
-// // Add a filter chain that skips the authenticationJwtRequestFilter() filter for the "/registerNewUser" and "/authenticate" endpoints
+// Add a filter chain that skips the authenticationJwtRequestFilter() filter for the "/registerNewUser" and "/authenticate" endpoints
 // httpSecurity
 //     .addFilterBefore(new Filter() {
 //         @Override
@@ -96,35 +95,35 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
 //     }, UsernamePasswordAuthenticationFilter.class);
 
 
-//     }
+    }
 
-    @Override
-  protected void configure(HttpSecurity http) throws Exception {
-    // @formatter:off
-    http
-        .httpBasic()
-          .disable()
-        .formLogin()
-          .disable()
-        .csrf()
-          .disable()
-        .logout()
-          .disable()  
-        .sessionManagement()
-          .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
-          .and()
-        .exceptionHandling()
-        .authenticationEntryPoint(jwtAuthenticationEntryPoint)
-          .and()
-       .addFilterBefore(authenticationJwtRequestFilter(), UsernamePasswordAuthenticationFilter.class)
-       .authorizeRequests()
-        .antMatchers("/ping**")
-        .permitAll()
-        .and()
-.authorizeRequests()
-        .anyRequest()
-        .authenticated();
-  }
+//     @Override
+//   protected void configure(HttpSecurity http) throws Exception {
+//     // @formatter:off
+//     http
+//         .httpBasic()
+//           .disable()
+//         .formLogin()
+//           .disable()
+//         .csrf()
+//           .disable()
+//         .logout()
+//           .disable()  
+//         .sessionManagement()
+//           .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
+//           .and()
+//         .exceptionHandling()
+//         .authenticationEntryPoint(jwtAuthenticationEntryPoint)
+//           .and()
+//        .addFilterBefore(authenticationJwtRequestFilter(), UsernamePasswordAuthenticationFilter.class)
+//        .authorizeRequests()
+//         .antMatchers("/ping**")
+//         .permitAll()
+//         .and()
+// .authorizeRequests()
+//         .anyRequest()
+//         .authenticated();
+//   }
     
 //    @Override
 //    public void configure(WebSecurity web) throws Exception {

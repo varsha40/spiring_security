@@ -19,19 +19,12 @@ public class UserController {
 
     @Autowired
     private UserService userService;
-    
-    @Autowired
-    private JwtService jwtService;
 
    @PostConstruct
     public void initRoleAndUser() {
         userService.initRoleAndUser();
     }
 
-    @PostMapping("/authenticate")
-    public JwtResponse createJwtToken(@RequestBody JwtRequest jwtRequest) throws Exception {
-        return jwtService.createJwtToken(jwtRequest);
-    }
 
     @PostMapping({"/registerNewUser"})
     public User registerNewUser(@RequestBody User user) {
