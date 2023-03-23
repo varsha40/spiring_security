@@ -44,10 +44,10 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
     public AuthenticationManager authenticationManagerBean() throws Exception {
         return super.authenticationManagerBean();
     }
-	@Bean
-	public JwtRequestFilter authenticationJwtRequestFilter() {
-		return new JwtRequestFilter();
-	}
+	// @Bean
+	// public JwtRequestFilter authenticationJwtRequestFilter() {
+	// 	return new JwtRequestFilter();
+	// }
 
     @Override
     protected void configure(HttpSecurity httpSecurity) throws Exception {
@@ -61,7 +61,7 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
                .and()
                .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
        
-        httpSecurity.addFilterBefore(authenticationJwtRequestFilter(), UsernamePasswordAuthenticationFilter.class);
+        httpSecurity.addFilterBefore(jwtRequestFilter, UsernamePasswordAuthenticationFilter.class);
 
     
     //     httpSecurity
